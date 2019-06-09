@@ -32,6 +32,7 @@ export default function request(options) {
   } catch (e) {
     message.error(e.message)
   }
+  console.log(cloneData)
 
   options.url =
     method.toLocaleLowerCase() === 'get'
@@ -43,11 +44,13 @@ export default function request(options) {
       pathname: window.location.pathname,
       cancel,
     })
+    console.log(options)
   })
 
   return axios(options)
     .then(response => {
       const { statusText, status, data } = response
+      console.log(response, options)
 
       let result = {}
       if (typeof data === 'object') {
